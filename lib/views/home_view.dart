@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/widget/no_weather_widget.dart';
+import 'package:weather_app/views/search_view.dart';
 import 'package:weather_app/widget/weather_data_widget.dart';
 
 class HomeView extends StatelessWidget {
@@ -11,7 +11,9 @@ static const routeName = '/home';
       
       appBar: AppBar(
         title: const Text('Weather App'),
-        actions: [IconButton(onPressed: (){}, icon: const Icon(Icons.search),iconSize: 32,)], 
+        actions: [IconButton(onPressed: (){
+          Navigator.pushNamed(context, SearchView.routeName);
+        }, icon: const Icon(Icons.search),iconSize: 32,)], 
 
       backgroundColor: Colors.blue,
       foregroundColor: Colors.white,

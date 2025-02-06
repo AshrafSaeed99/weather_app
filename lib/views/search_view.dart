@@ -7,6 +7,7 @@ static const routeName = '/search';
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
+        title: const Text('Search a City'),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         elevation: 10,
@@ -20,6 +21,7 @@ static const routeName = '/search';
             onSubmitted: (value) {
               Navigator.pop(context, value);
             },
+            style: TextStyle(fontSize: 26, color: Colors.black),
             decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 30, horizontal: 12),
               border: OutlineInputBorder(
@@ -29,6 +31,7 @@ static const routeName = '/search';
               labelStyle: TextStyle(color: Colors.black, fontSize: 24),
               hintText: 'Enter City Name',
               hintStyle: TextStyle(color: Colors.black, fontSize: 24),
+              
               suffixIcon: const Icon(Icons.search,size: 32,),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.blue, width: 2.0),
