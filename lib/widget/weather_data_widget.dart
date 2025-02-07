@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/models/weather_model.dart';
 
 class WeatherDataWidget extends StatelessWidget {
-  const WeatherDataWidget({super.key});
-
+  const WeatherDataWidget({super.key, required this.weatherModel});
+  final WeatherModel weatherModel;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-        
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text(
-          'Alexandria',
-          style: TextStyle(
+          weatherModel.cityName,
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 32,
           ),
         ),
         Text(
-          'Updated at: 12:00',
-          style: TextStyle(
+          'Udated at: ${weatherModel.date.hour}:${weatherModel.date.minute}',
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w400,
             fontSize: 24,
           ),
         ),
-        SizedBox(height: 40),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
+        const SizedBox(height: 40),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, 
+        children: [
+          Image.network(
+            weatherModel.imageUrl.contains('https:')?
+            weatherModel.imageUrl: 'https:${weatherModel.imageUrl}',
+          ),
           Text(
-            '18°',
-            style: TextStyle(
+            weatherModel.temp.round().toString(),
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 32,
@@ -43,16 +44,16 @@ class WeatherDataWidget extends StatelessWidget {
           ),
           Column(children: [
             Text(
-              'maxTemp: 20°',
-              style: TextStyle(
+              'maxTemp: ${weatherModel.maxTemp.round()}',
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
               ),
             ),
             Text(
-              'minTemp: 16°',
-              style: TextStyle(
+              'minTemp: ${weatherModel.minTemp.round()}',
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
@@ -60,10 +61,10 @@ class WeatherDataWidget extends StatelessWidget {
             ),
           ])
         ]),
-          SizedBox(height: 40),
+        const SizedBox(height: 40),
         Text(
-          'Light Rain',
-          style: TextStyle(
+          weatherModel.condition,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 32,
             fontWeight: FontWeight.bold,

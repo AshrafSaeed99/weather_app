@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:weather_app/cubits/weather_cubit/weather_state.dart';
 import 'package:weather_app/models/weather_model.dart';

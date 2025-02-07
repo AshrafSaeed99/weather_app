@@ -19,13 +19,14 @@ class WeatherModel {
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
-      temp: json['main']['temp'].toDouble(),
-      minTemp: json['main']['temp_min'].toDouble(),
-      maxTemp: json['main']['temp_max'].toDouble(),
-      cityName: json['name'],
-      condition: json['weather'][0]['main'],
-      imageUrl: 'https://openweathermap.org/img/wn/${json['weather'][0]['icon']}@2x.png',
-      date: DateTime.now(),
+      cityName: json['location']['name'],
+      date: DateTime.parse(json['current']['last_updated']),
+      temp: json["forecast"]["forecastday"][0]['day']['avgtemp_c'],
+      maxTemp: json["forecast"]["forecastday"][0]['day']['maxtemp_c'],
+      minTemp: json["forecast"]["forecastday"][0]['day']["mintemp_c"],
+      condition: json["forecast"]["forecastday"][0]['day']['condition']
+          ["text"],
+      imageUrl: json["forecast"]["forecastday"][0]['day']['condition']["icon"],
     );
   }
 }
