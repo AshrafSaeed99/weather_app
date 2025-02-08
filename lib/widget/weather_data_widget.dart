@@ -7,6 +7,17 @@ class WeatherDataWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Theme.of(context).primaryColor,
+            Theme.of(context).primaryColorLight,
+          ],
+        )
+      ),
+
       height: double.infinity,
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 20),

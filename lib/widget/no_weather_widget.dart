@@ -6,6 +6,7 @@ class NoWeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Theme.of(context).primaryColor,
       height: double.infinity,
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 20),

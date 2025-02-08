@@ -16,11 +16,11 @@ class WeatherService {
           .get('$baseUrl/forecast.json?key=$apiKey&q=$cityName&days=1');
       return WeatherModel.fromJson(response.data);
     } on DioException catch (e) {
-      String message = e.response?.data['error']['message'] ?? 'An error occurred';
+      String message = e.response?.data['error']['message'] ?? 'City not found. Please enter a valid city name.';
       throw Exception(message);
     } catch (e) {
       log(e.toString());
-      throw Exception(e);
+      throw Exception('oops something went wrong\n${e.toString()}');
     }
   }
 }

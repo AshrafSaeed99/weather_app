@@ -10,11 +10,20 @@ static const routeName = '/search';
     return  Scaffold(
       appBar: AppBar(
         title: const Text('Search a City'),
-        backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
-        elevation: 10,
+        elevation: 0,
       ),
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+            Theme.of(context).primaryColor,
+            Theme.of(context).primaryColorLight,
+            
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter
+        )),
         height: double.infinity,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -33,13 +42,14 @@ static const routeName = '/search';
               labelText: 'Search',
               labelStyle: TextStyle(color: Colors.black, fontSize: 24),
               hintText: 'Enter City Name',
-              hintStyle: TextStyle(color: Colors.black, fontSize: 24),
+              hintStyle: TextStyle(fontSize: 24),
               
               suffixIcon: const Icon(Icons.search,size: 32,),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue, width: 2.0),
-              )
+          
+              ),
             ),
+          autofocus: true,
           ),
         ),
       ),

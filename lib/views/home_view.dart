@@ -5,6 +5,7 @@ import 'package:weather_app/cubits/weather_cubit/weather_state.dart';
 import 'package:weather_app/views/search_view.dart';
 import 'package:weather_app/widget/no_weather_widget.dart';
 import 'package:weather_app/widget/weather_data_widget.dart';
+import 'package:weather_app/widget/weather_error_message_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -23,9 +24,7 @@ class HomeView extends StatelessWidget {
             iconSize: 32,
           )
         ],
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        elevation: 10,
+        elevation: 3.5,
       ),
       body: BlocBuilder<WeatherCubit, WeatherState>(
         builder: (context, state) {
@@ -33,19 +32,13 @@ class HomeView extends StatelessWidget {
             return const Center(
               child: NoWeatherWidget(),
             );
+          } else if (state is WeatherLoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (state is WeatherErrorState) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                ),
-                child: Text('oops something went wrong.\n${state.errorMessage}',
-                    style: const TextStyle(
-                      color: Colors.red,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    )),
-              ),
+            return WeatherErrorMessagewidget(
+              errorMessage: state.errorMessage,
             );
           } else if (state is WeatherSuccessState) {
             return WeatherDataWidget(
@@ -53,7 +46,7 @@ class HomeView extends StatelessWidget {
             );
           } else {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: Text('Something went wrong!'),
             );
           }
         },
